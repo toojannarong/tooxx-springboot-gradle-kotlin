@@ -11,9 +11,35 @@ group = "com.tooxx"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
-repositories {
-    mavenCentral()
+
+buildscript {
+    repositories {
+        maven {
+            url = uri("http://nexus.na.xom.com:8081/repository/maven-central/")
+        }
+        maven {
+            url = uri("http://nexus.na.xom.com:8081/repository/maven-flcit/")
+        }
+        maven {
+            url = uri("http://nexus.na.xom.com:8081/repository/maven-hosted/")
+        }
+    }
 }
+
+
+repositories {
+    maven {
+        url = uri("http://nexus.na.xom.com:8081/repository/maven-central/")
+    }
+    maven {
+        url = uri("http://nexus.na.xom.com:8081/repository/maven-flcit/")
+    }
+    maven {
+        url = uri("http://nexus.na.xom.com:8081/repository/maven-hosted/")
+    }
+}
+
+
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")

@@ -32,6 +32,7 @@ jobs:
       - name: Build Gradle Success
         run: |
           echo Gradle Success Build Success!
+          pwd
           ls
 
  

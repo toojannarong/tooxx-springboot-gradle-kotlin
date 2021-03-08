@@ -27,7 +27,7 @@ jobs:
           java-version: ${{ env.JAVA_VERSION }}
       # Gradle
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew build bootJar
     
       - name: Build Gradle Success
         run: |

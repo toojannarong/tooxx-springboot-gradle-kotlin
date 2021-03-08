@@ -38,6 +38,10 @@ jobs:
     needs: [ build-jar ]
     runs-on: ubuntu-latest
     steps:
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS_TOOTEST }}
+          allow-no-subscriptions: true
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:

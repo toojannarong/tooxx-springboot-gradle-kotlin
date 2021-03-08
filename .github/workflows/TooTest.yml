@@ -40,7 +40,7 @@ jobs:
     steps:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
-          with:
+        with:
           app-name: 'TooTest'
           slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_0a87971ed77a4d1a923d0942fba7432e }}

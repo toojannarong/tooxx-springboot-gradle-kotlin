@@ -6,7 +6,7 @@ plugins {
 	kotlin("jvm") version "1.4.30"
 	kotlin("plugin.spring") version "1.4.30"
 	jacoco
-	id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
+// 	id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
 }
 
 group = "com.xom"

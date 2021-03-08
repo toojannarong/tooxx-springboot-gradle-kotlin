@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name:Test 1
+name:CI 1
 
 # Controls when the action will run. 
 on:

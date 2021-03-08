@@ -38,16 +38,16 @@ jobs:
     needs: [ build-jar ]
     runs-on: ubuntu-latest
     steps:
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS_TOOTEST }}
-          allow-no-subscriptions: true
+#       - uses: azure/login@v1
+#         with:
+#           creds: ${{ secrets.AZURE_CREDENTIALS_TOOTEST }}
+#           allow-no-subscriptions: true
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'TooTest'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_0a87971ed77a4d1a923d0942fba7432e }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: '${{ github.workspace }}/build/libs/*.jar'
 
  

@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
   
 env:
-  JAVA_VERSION: '1.8'                # set this to the Java version to use
+  JAVA_VERSION: '1.8'               
   BUILD_TARGET_LOCATION: ${{ github.workspace }}/build/libs
   OSS_BUCKET_ENDPOINT: ${{ secrets.TOOTEST_ALI_OSS_BUCKET_ENDPOINT }}
   OSS_BUCKET_NAME: ${{ secrets.TOOTEST_ALI_OSS_BUCKET_NAME }}
@@ -17,8 +17,8 @@ env:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build-jar:
+
+  build-and-deploy-azure-alibaba:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -50,7 +50,7 @@ jobs:
           publish-profile: ${{ secrets.TOOTEST_AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: '${{ github.workspace }}/build/libs/*.jar'
       - name: Install Alibaba Cloud OSSUTIL
-        run: wget http://gosspublic.alicdn.com/ossutil/1.6.10/ossutil64 && chmod +x ossutil64
+        run: wget http://gosspublic.alicdn.com/ossutil/1.7.1/ossutil64 && chmod +x ossutil64
       - name: Configure Alibaba Cloud OSSUTIL
         run: ./ossutil64 config -i ${OSS_BUCKET_KEY} -k ${OSS_BUCKET_SECRET} -e ${OSS_BUCKET_ENDPOINT} -c .ossutilconfig
       - name: Upload the web folder to the chosen OSS bucket

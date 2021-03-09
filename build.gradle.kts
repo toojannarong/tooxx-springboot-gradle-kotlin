@@ -19,6 +19,7 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -84,4 +85,11 @@ tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar
 		attributes("gitTag" to gitTag)
 		attributes("gitCommitId" to gitCommitId)
 	}
+}
+
+
+
+springBoot {
+	//Spring Boot Actuator’s info endpoint automatically publishes information about build in the presence of a META-INF/build-info.properties
+	buildInfo()
 }

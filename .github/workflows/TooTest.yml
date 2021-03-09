@@ -44,7 +44,7 @@ jobs:
           app-name: 'TooTest'
           slot-name: 'production'
           publish-profile: ${{ secrets.TOOTEST_AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ${BUILD_TARGET_LOCATION}/*.jar
+          package: '${BUILD_TARGET_LOCATION}/*.jar'
       - name: Install Alibaba Cloud OSSUTIL
         run: wget http://gosspublic.alicdn.com/ossutil/1.6.10/ossutil64 && chmod +x ossutil64
       - name: Configure Alibaba Cloud OSSUTIL

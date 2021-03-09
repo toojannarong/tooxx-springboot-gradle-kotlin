@@ -20,10 +20,11 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%Y%m%dT.%H%M%S')"
       - name: Test with environment variables
-        run: echo $TAG_NAME - $RELEASE_NAME
+        run: echo $SHA $TAG_NAME - $RELEASE_NAME
         env:
           TAG_NAME: nightly-tag-${{ steps.date.outputs.date }}
           RELEASE_NAME: nightly-release-${{ steps.date.outputs.date }}
+          SHA: ${{ GITHUB_SHA }}
       - name: Test with input
         uses: actions/hello-world-docker-action@master
         with:

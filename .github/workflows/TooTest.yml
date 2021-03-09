@@ -59,6 +59,10 @@ jobs:
       - name: Upload the web folder to the chosen OSS bucket
         run: ./ossutil64 --config-file .ossutilconfig cp ${BUILD_TARGET_LOCATION} oss://${OSS_BUCKET_NAME} -r -f
       - name: Install Alibaba Cloud wpctl
-        run: eval "$(curl -s -L https://webplus-cn-shenzhen.oss-cn-shenzhen.aliyuncs.com/cli/install.sh)" && wpctl app:list
+        run: |
+          wget https://webplus-cn-shenzhen.oss-cn-shenzhen.aliyuncs.com/cli/wpctl-linux 
+          mv wpctl-linux wpctl
+          chmod +x wpctl
+          wpctl app:list
 
  

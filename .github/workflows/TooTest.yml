@@ -10,9 +10,11 @@ on:
 env:
   JAVA_VERSION: '1.8'               
   BUILD_TARGET_LOCATION: ${{ github.workspace }}/build/libs
+  JAR_LOCATION: ${{ github.workspace }}/build/libs/*.jar
   AZURE_WEBAPP_PUBLISH_PROFILE: ${{ secrets.TOOTEST_AZURE_WEBAPP_PUBLISH_PROFILE }}
   AZURE_WEBAPP_NAME: 'TooTest'
   AZURE_WEBAPP_SLOT_NAME: 'production'
+  ALIBABA_REGION_ID: 'ap-southeast-1'
   OSS_BUCKET_ENDPOINT: 'oss-ap-southeast-1.aliyuncs.com'
   OSS_BUCKET_NAME: 'too-test-webapp'
   OSS_BUCKET_KEY: ${{ secrets.TOOTEST_ALI_OSS_ACCESS_KEY_ID }}
@@ -60,8 +62,7 @@ jobs:
         run: ./ossutil64 --config-file .ossutilconfig cp ${BUILD_TARGET_LOCATION} oss://${OSS_BUCKET_NAME} -r -f
       - name: Install Alibaba Cloud wpctl
         run: |
-          chmod +x /usr/local/bin
-          eval "$(curl -s -L https://webplus-cn-shenzhen.oss-cn-shenzhen.aliyuncs.com/cli/install.sh)"
-          wpctl app:list
-
+          eval "$(curl -s -L https://raw.githubusercontent.com/toojannarong/tooxx-springboot-gradle-kotlin/main/wpctl-install.sh)"
+          wpctl configure --access-key-id "${OSS_BUCKET_KEY}" --access-key-secret "${OSS_BUCKET_SECRET}" --region "${ALIBABA_REGION_ID}"  --profile demo 
+          wpctl env:apply --package ${JAR_LOCATION} --label webplusVersion0.1 --category Java --env TooTest --app ChemIT_Order --create-on-absent
  

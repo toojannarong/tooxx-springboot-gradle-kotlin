@@ -63,6 +63,6 @@ jobs:
       - name: Install Alibaba Cloud wpctl
         run: |
           eval "$(curl -s -L https://raw.githubusercontent.com/toojannarong/tooxx-springboot-gradle-kotlin/main/wpctl-install.sh)"
-          wpctl configure --access-key-id "${OSS_BUCKET_KEY}" --access-key-secret "${OSS_BUCKET_SECRET}" --region "${ALIBABA_REGION_ID}"  --profile demo 
-          wpctl env:apply --package ${JAR_LOCATION} --label webplusVersion0.1 --category Java --env TooTest --app ChemIT_Order --create-on-absent
+          ./wpctl configure --access-key-id "${OSS_BUCKET_KEY}" --access-key-secret "${OSS_BUCKET_SECRET}" --region "${ALIBABA_REGION_ID}"  --profile demo 
+          ./wpctl env:apply --package ${JAR_LOCATION} --label webplusVersion0.1 --category Java --env TooTest --app ChemIT_Order --create-on-absent
  

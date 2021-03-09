@@ -60,9 +60,15 @@ jobs:
         run: ./ossutil64 config -i ${OSS_BUCKET_KEY} -k ${OSS_BUCKET_SECRET} -e ${OSS_BUCKET_ENDPOINT} -c .ossutilconfig
       - name: Upload the web folder to the chosen OSS bucket
         run: ./ossutil64 --config-file .ossutilconfig cp ${BUILD_TARGET_LOCATION} oss://${OSS_BUCKET_NAME} -r -f
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H:%M:%S')"
       - name: Install Alibaba Cloud wpctl
         run: |
           eval "$(curl -s -L https://raw.githubusercontent.com/toojannarong/tooxx-springboot-gradle-kotlin/main/wpctl-install.sh)"
           ./wpctl configure --access-key-id "${OSS_BUCKET_KEY}" --access-key-secret "${OSS_BUCKET_SECRET}" --region "${ALIBABA_REGION_ID}"  --profile demo 
+          echo Deploying verion:$LABEL
           ./wpctl env:apply --package ${JAR_LOCATION} --label webplusVersion0.1 --category Java --env TooTest --app ChemIT_Order --create-on-absent
+        env:
+          LABEL: ${{ github.GITHUB_SHA }}-${{ steps.date.outputs.date }}
  

@@ -14,9 +14,11 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Hi, Too
-          eval "$(curl -s -L https://raw.githubusercontent.com/toojannarong/tooxx-springboot-gradle-kotlin/main/wpctl-install.sh?token=AAVQZVSFYME4SHKA6XF4T7TAI6QQO)"
+          eval "$(curl -s -L https://raw.githubusercontent.com/toojannarong/tooxx-springboot-gradle-kotlin/main/wpctl-install.sh)"
           echo current dir: $(pwd)
           ls
           echo to wpctl then ls
           cd wpctl && ls
           echo current dir: $(pwd)
+          wpctl
+          

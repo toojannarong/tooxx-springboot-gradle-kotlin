@@ -9,7 +9,7 @@ on:
   
 env:
   JAVA_VERSION: '1.8'                # set this to the Java version to use
-  BUILD_TARGET_LOCATION: ${{ github.workspace }}/build/libs
+  BUILD_TARGET_LOCATION: '${{ github.workspace }}/build/libs'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:

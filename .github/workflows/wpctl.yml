@@ -20,5 +20,5 @@ jobs:
           echo to wpctl then ls
           cd wpctl && ls
           echo current dir: $(pwd)
-          wpctl
+          ./wpctl
           

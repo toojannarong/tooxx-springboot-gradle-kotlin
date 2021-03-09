@@ -48,7 +48,7 @@ jobs:
       - name: Install Alibaba Cloud OSSUTIL
         run: wget http://gosspublic.alicdn.com/ossutil/1.6.10/ossutil64 && chmod +x ossutil64
       - name: Configure Alibaba Cloud OSSUTIL
-        run: ./ossutil64 config -i ${TOOTEST_ALI_OSS_ACCESS_KEY_ID} -k ${TOOTEST_ALI_OSS_ACCESS_KEY_SECRET} -e ${TOOTEST_ALI_OSS_BUCKET_ENDPOINT} -c .ossutilconfig
+        run: ./ossutil64 config -i ${{ secrets.TOOTEST_ALI_OSS_ACCESS_KEY_ID }} -k ${{ secrets.TOOTEST_ALI_OSS_ACCESS_KEY_SECRET }} -e ${{ secrets.TOOTEST_ALI_OSS_BUCKET_ENDPOINT }} -c .ossutilconfig
       - name: Upload the web folder to the chosen OSS bucket
         run: ./ossutil64 --config-file .ossutilconfig cp ${BUILD_TARGET_LOCATION} oss://${BUCKET} -r -f
 

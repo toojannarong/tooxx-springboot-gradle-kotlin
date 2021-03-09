@@ -61,3 +61,27 @@ tasks {
 		dependsOn(":copy")
 	}
 }
+
+
+fun String.runCommand(workingDir: File = file("./")): String {
+	val parts = this.split("\\s".toRegex())
+	val proc = ProcessBuilder(*parts.toTypedArray())
+		.directory(workingDir)
+		.redirectOutput(ProcessBuilder.Redirect.PIPE)
+		.redirectError(ProcessBuilder.Redirect.PIPE)
+		.start()
+
+	proc.waitFor(1, TimeUnit.MINUTES)
+	return proc.inputStream.bufferedReader().readText().trim()
+}
+
+val gitBranch = "git rev-parse --abbrev-ref HEAD".runCommand()
+val gitTag = "git tag -l --points-at HEAD".runCommand()
+val gitCommitId = "git rev-parse --short=8 HEAD".runCommand()
+tasks.getByName<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
+	manifest {
+		attributes("gitBranch" to gitBranch)
+		attributes("gitTag" to gitTag)
+		attributes("gitCommitId" to gitCommitId)
+	}
+}

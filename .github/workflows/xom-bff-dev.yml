@@ -1,0 +1,29 @@
+name: Template Build And Deploy To Dev
+on:
+  workflow_dispatch:
+    inputs:
+    logLevel:
+      description: 'Log level'
+      required: true
+      default: 'warning'
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build And Deploy To Dev
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Apply YAML to xom-bcs-dev
+        uses: Consensys/kubernetes-action@master
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: apply -R -f kubernetes/pullImageSecret.yml -f kubernetes/deploy.yaml -f kubernetes/service.yaml
+
+      - name: Sleep for 60s to let cluster pull image
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '60s'

@@ -20,11 +20,11 @@ spec:
         image: ghcr.io/toojannarong/tooxx-springboot-gradle-kotlin/test-k8s:1.0
         ports:
         - containerPort: 8080
-        env:
-#          - name: DatabaseConfiguration__Password
-#            valueFrom:
-#              secretKeyRef:
-#                name: template-mysql-secret
-#                key: dbpassword
-          imagePullSecrets:
-            - name: github-registry-credential
+#        env:
+#        - name: DatabaseConfiguration__Password
+#          valueFrom:
+#            secretKeyRef:
+#              name: template-mysql-secret
+#              key: dbpassword
+      imagePullSecrets:
+        - name: github-registry-credential

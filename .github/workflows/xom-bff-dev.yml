@@ -32,7 +32,7 @@ jobs:
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
-          args: apply -R -f kubernetes/namespace.yml -f kubernetes/deploy.yaml -f kubernetes/service.yaml
+          args: apply -R -f kubernetes/pullImageSecret.yml -f kubernetes/namespace.yml -f kubernetes/deploy.yaml -f kubernetes/service.yaml
 
       - name: Sleep for 60s to let cluster pull image
         uses: jakejarvis/wait-action@master

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: xom-bff-dev
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: xom-bff-sit
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: xom-bff-uat
+

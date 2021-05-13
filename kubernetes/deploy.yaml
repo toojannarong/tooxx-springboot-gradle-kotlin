@@ -21,10 +21,10 @@ spec:
         ports:
         - containerPort: 8080
         env:
-          - name: DatabaseConfiguration__Password
-            valueFrom:
-              secretKeyRef:
-                name: template-mysql-secret
-                key: dbpassword
+#          - name: DatabaseConfiguration__Password
+#            valueFrom:
+#              secretKeyRef:
+#                name: template-mysql-secret
+#                key: dbpassword
           imagePullSecrets:
             - name: github-registry-credential

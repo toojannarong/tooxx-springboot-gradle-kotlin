@@ -18,16 +18,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Login to GitHub Packages Docker Registry
-          uses: docker/login-action@v1
-          with:
-            registry: ghcr.io
-            username: ${{ github.repository_owner }}
-            password: ${{ secrets.GITHUB_TOKEN }}
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Generate secret from docker config
-              run: |
-                BASE64=$(cat $HOME/.docker/config.json | base64 -w 0)
-                sed -i "s/BASE64_CREDENTIAL/$BASE64/g" ./kubernetes/pullImageSecret.yml
+          - name: Generate secret from docker config
+            run: |
+              BASE64=$(cat $HOME/.docker/config.json | base64 -w 0)
+              sed -i "s/BASE64_CREDENTIAL/$BASE64/g" ./kubernetes/pullImageSecret.yml
       - name: Apply YAML to xom-bcs-dev
         uses: Consensys/kubernetes-action@master
         env:

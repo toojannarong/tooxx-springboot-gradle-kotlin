@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tootestbffaplication-deployment
+  namespace: xom-bff-dev
+  labels:
+    app: tootestbffaplication
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: tootestbffaplication
+  template:
+    metadata:
+      labels:
+        app: tootestbffaplication
+    spec:
+      containers:
+      - name: tootestbffaplication
+        image: docker pull docker.pkg.github.com/toojannarong/tooxx-springboot-gradle-kotlin/test-k8s:1.0
+        ports:
+        - containerPort: 8080

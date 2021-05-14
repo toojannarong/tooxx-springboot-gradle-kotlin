@@ -5,7 +5,7 @@ metadata:
   namespace: xom-bff-dev
 spec:
   rules:
-    - host: '*'
+    - host: '*.ceeb009eee4dd4e148df07ddecaced187.cn-shanghai.alicontainer.com'
       http:
         paths:
           - path: /test

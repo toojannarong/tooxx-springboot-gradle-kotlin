@@ -1,14 +1,15 @@
 apiVersion: networking.k8s.io/v1beta1
-  kind: Ingress
-  metadata:
-    name: test-ingress
-    namespace: xom-bff-dev
-  spec:
-    rules:
-      - host: '*.ceeb009eee4dd4e148df07ddecaced187.cn-shanghai.alicontainer.com'
-        http:
-          paths:
-            - path: /test
-              backend:
-                serviceName: tootest-service
-                servicePort: 8080
+kind: Ingress
+metadata:
+  name: test-ingress
+  namespace: xom-bff-dev
+spec:
+  rules:
+    - host: '*.ceeb009eee4dd4e148df07ddecaced187.cn-shanghai.alicontainer.com'
+      http:
+        paths:
+          - path: /test
+            backend:
+              serviceName: tootest-service
+              servicePort: 8080
+
